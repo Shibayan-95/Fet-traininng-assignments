@@ -1,0 +1,25 @@
+<html>
+<head>
+<script>
+var a = "";
+function prev(){
+a+= "<p>Previous visited site is" + history.back() +"</p>";
+document.getElementById("demo").innerHTML= a;
+}
+function forw(){
+a+= "<p>Next visited site is" + history.forward() +"</p>";
+document.getElementById("demo").innerHTML= a;
+}
+function len(){
+alert(history.length);
+}
+</script>
+</head>
+<body>
+<div id="demo">
+<button type="buton" onclick="prev()">previous site</button>
+<button type="buton" onclick="forw()">next site</button>
+<button type="buton" onclick="len()">length</button>
+</div>
+</body>
+</html>
