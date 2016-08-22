@@ -1,0 +1,7 @@
+Assignment: 
+
+Create a input box, which takes any value.
+If value is not numeric then invalid text html should be displayed
+
+If numeric and if greater than 50: Gold is expensive(should be in red) should be displayed
+If numeric and if less than 50: Gold is cheap(should be in green) should be displayed
