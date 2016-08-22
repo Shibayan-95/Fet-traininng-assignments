@@ -1,0 +1,150 @@
+//Always give knockout script after the body
+
+
+
+
+//Example 1 
+      
+
+
+//HTML
+ 
+<h4>People</h4>
+No of people:- <span data-bind="text:people().length"></span>
+<ul data-bind="foreach: people">
+    <li>
+        Name at position <span data-bind="text: $index"> </span>:
+        <span data-bind="text: name"> </span>
+    </li>
+</ul>
+<button data-bind="click: addPerson, disable: people().length === 5">Add</button>
+
+//Js code
+
+function AppViewModel() {
+    var self = this;
+ 
+    self.people = ko.observableArray([
+        { name: 'Bert' },
+        { name: 'Charles' },
+        { name: 'Denise' }
+    ]);
+ 
+    self.addPerson = function() {
+        self.people.push({ name: "New person added" });
+    };
+}
+ 
+ko.applyBindings(new AppViewModel());
+
+
+
+
+
+
+//Example 2
+
+
+//HTML
+
+
+<div id='container'>   
+    <p>First name: <span data-bind='text:firstName'></span></p> 
+    <p>Last name:  <span data-bind='text:lastName'></span></p> 
+     <button data-bind="click:changeName">
+   Change Name
+   </button>
+    
+</div>
+
+<div id='container1'>   
+    <p>First name: <span data-bind='text:firstName'></span></p> 
+    <p>Last name:  <span data-bind='text:lastName'></span></p> 
+     <button id="1" data-bind="click:changeName">
+   Change Name
+   </button>
+    
+</div>
+
+
+
+//CSS
+
+
+body { font-family: arial; font-size: 14px; }
+.container { padding: 1em; background-color: #eeeeee; border: 1px solid #CCC; max-width: 655px; }
+.container input { font-family: Arial; }
+.container h2 { margin-top: 0.4em; font-weight: bold; font-size: 1.2em; }
+
+
+
+
+//Js code
+
+
+// dummy data model
+var ViewModel = function(first, last) {
+    this.firstName = ko.observable(first);
+    this.lastName = ko.observable(last);
+    
+     this.changeName = function (){
+             this.firstName('jerin');
+     }
+     //return changename();
+ };
+var ViewModel2 = function(first, last) {
+    this.firstName = ko.observable(first);
+    this.lastName = ko.observable(last);
+    
+     this.changeName = function (){
+             this.firstName('jerin2');
+     }
+     //return changename();
+ };
+
+  
+ko.applyBindings(new ViewModel("Knockout", "Earth"), document.getElementById('container')); // This makes Knockout get to work
+ko.applyBindings(new ViewModel2("Knockout", "Earth"), document.getElementById('container1')); // This makes Knockout get to work
+
+
+
+
+
+//Example 3
+
+
+//HTML
+
+
+<div class='container'>   
+    <p>First name: <input data-bind='value: firstName' /></p> 
+    <p>Last name: <input data-bind='value: lastName' /></p> 
+    <h2>Hello, <span data-bind='text: fullName'> </span>!</h2>  
+</div>
+
+
+
+//CSS
+
+
+
+body { font-family: arial; font-size: 14px; }
+.container { padding: 1em; background-color: #eeeeee; border: 1px solid #CCC; max-width: 655px; }
+.container input { font-family: Arial; }
+.container h2 { margin-top: 0.4em; font-weight: bold; font-size: 1.2em; }
+
+
+//Js code
+
+
+// dummy data model
+var ViewModel = function(first, last) {
+    this.firstName = ko.observable(first);
+    this.lastName = ko.observable(last);
+ 
+    this.fullName = ko.computed(function() {
+        return this.firstName() + " " + this.lastName();
+    }, this);
+};
+ 
+ko.applyBindings(new ViewModel("Knockout", "Earth")); // This makes Knockout get to work
